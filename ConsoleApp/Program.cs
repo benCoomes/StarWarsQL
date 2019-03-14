@@ -1,5 +1,5 @@
 ﻿using System;
-using StarWarsQL;
+using StarWarsQL.SchemaFirst;
 
 namespace StarWarsQLConsole
 {
@@ -7,7 +7,7 @@ namespace StarWarsQLConsole
     {
         static void Main(string[] args)
         {
-           Console.WriteLine(HelloWorld.Execute());
+            Console.WriteLine(StarWarsSchema.Execute("{ person(id: \"4\") { name gender height skinColor hairColor homeworld vehicles} }"));
         }
     }
 }
