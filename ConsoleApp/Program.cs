@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using StarWarsQL.SchemaFirst;
+using StarWarsQL.CodeFirst;
 
 namespace StarWarsQLConsole
 {
@@ -9,7 +9,7 @@ namespace StarWarsQLConsole
     {
         static Dictionary<string, string> NamedQueries = new Dictionary<string, string>()
         {
-            {"darthVadar", "{ person(id: \"4\") { name gender height skinColor hairColor homeworld vehicles} }"},
+            {"darthVadar", "{ person(id: \"4\") { name gender height skinColor hairColor homeworld films { title } } }"},
             {"allPeople", "{ allPersons { name gender height skinColor hairColor homeworld vehicles } }"}
         };
 
