@@ -6,7 +6,7 @@ using GraphQL.Builders;
 using GraphQL;
 using GraphQL.Types;
 using Newtonsoft.Json;
-using StarWarsQL.Types;
+using StarWarsQL.Models;
 
 namespace StarWarsQL.SchemaFirst
 {

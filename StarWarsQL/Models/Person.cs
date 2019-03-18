@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace StarWarsQL.Types
+namespace StarWarsQL.Models
 {
 	public class Person
 	{
