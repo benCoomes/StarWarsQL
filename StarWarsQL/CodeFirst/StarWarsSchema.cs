@@ -48,6 +48,18 @@ namespace StarWarsQL.CodeFirst
                         return SWAPI.GetByID<Film>("films", id);
                     }
                 );
+
+                Field<StarshipType>(
+                    "starship",
+                    arguments: new QueryArguments(
+                        new QueryArgument<IdGraphType> { Name = "id" }
+                    ),
+                    resolve: context => 
+                    {
+                        var id = context.GetArgument<string>("id");
+                        return SWAPI.GetByID<Starship>("starships", id);
+                    }
+                );
             } 
         }
     }  

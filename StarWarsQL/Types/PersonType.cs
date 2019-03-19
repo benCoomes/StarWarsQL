@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GraphQL.Types;
 using StarWarsQL.Models;
 using StarWarsQL.Data;
@@ -8,24 +9,29 @@ namespace StarWarsQL.Types
     {
         public PersonType()
         {
-            Field<StringGraphType>("Name", resolve: context => context.Source.Name);            
-            Field<StringGraphType>("BirthYear", resolve: context => context.Source.BirthYear);            
-            Field<StringGraphType>("EyeColor", resolve: context => context.Source.EyeColor);        
-            Field<StringGraphType>("Gender", resolve: context => context.Source.Gender);
-            Field<StringGraphType>("HairColor", resolve: context => context.Source.HairColor);        
-            Field<StringGraphType>("Height", resolve: context => context.Source.Height);        
-            Field<StringGraphType>("Mass", resolve: context => context.Source.Mass);        
-            Field<StringGraphType>("SkinColor", resolve: context => context.Source.SkinColor);        
-            Field<StringGraphType>("Homeworld", resolve: context => context.Source.Homeworld);        
-            Field<ListGraphType<FilmType>>("Films", resolve: ResolveFilms);
-            Field<ListGraphType<StringGraphType>>("Species", resolve: context => context.Source.Species);
-            Field<ListGraphType<StringGraphType>>("Starships", resolve: context => context.Source.Starships);
-            Field<ListGraphType<StringGraphType>>("Vehicles", resolve: context => context.Source.Vehicles);
+            Field<StringGraphType>("name", resolve: context => context.Source.Name);            
+            Field<StringGraphType>("birthYear", resolve: context => context.Source.BirthYear);            
+            Field<StringGraphType>("eyeColor", resolve: context => context.Source.EyeColor);        
+            Field<StringGraphType>("gender", resolve: context => context.Source.Gender);
+            Field<StringGraphType>("hairColor", resolve: context => context.Source.HairColor);        
+            Field<StringGraphType>("height", resolve: context => context.Source.Height);        
+            Field<StringGraphType>("mass", resolve: context => context.Source.Mass);        
+            Field<StringGraphType>("skinColor", resolve: context => context.Source.SkinColor);        
+            Field<StringGraphType>("homeworld", resolve: context => context.Source.Homeworld);        
+            Field<ListGraphType<FilmType>>("films", resolve: ResolveFilms);
+            Field<ListGraphType<StringGraphType>>("species", resolve: context => context.Source.Species);
+            Field<ListGraphType<StarshipType>>("starships", resolve: ResolveStarships);
+            Field<ListGraphType<StringGraphType>>("vehicles", resolve: context => context.Source.Vehicles);
         }
 
-        private object ResolveFilms(ResolveFieldContext<Person> context) 
+        private IEnumerable<Film> ResolveFilms(ResolveFieldContext<Person> context) 
         {
             return SWAPI.ResolveReferences<Film>(context.Source.Films).GetAwaiter().GetResult();
+        }
+
+        private IEnumerable<Starship> ResolveStarships(ResolveFieldContext<Person> context)
+        {
+            return SWAPI.ResolveReferences<Starship>(context.Source.Starships).GetAwaiter().GetResult();
         }
     }
 }

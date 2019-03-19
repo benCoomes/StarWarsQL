@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GraphQL.Types;
 using StarWarsQL.Data;
 using StarWarsQL.Models;
@@ -15,15 +16,20 @@ namespace StarWarsQL.Types
             Field<StringGraphType>("producer", resolve: context => context.Source.Producer);
             Field<StringGraphType>("release_date", resolve: context => context.Source.ReleaseDate);
             Field<ListGraphType<StringGraphType>>("species", resolve: context => context.Source.Species);
-            Field<ListGraphType<StringGraphType>>("starships", resolve: context => context.Source.Starships);
+            Field<ListGraphType<StarshipType>>("starships", resolve: ResolveStarships);
             Field<ListGraphType<StringGraphType>>("vehicles", resolve: context => context.Source.Vehicles);
             Field<ListGraphType<PersonType>>("characters", resolve: ResolveCharacters);
             Field<ListGraphType<StringGraphType>>("planets", resolve: context => context.Source.Planets);
         }
 
-        private object ResolveCharacters(ResolveFieldContext<Film> context)
+        private IEnumerable<Person> ResolveCharacters(ResolveFieldContext<Film> context)
         {
             return SWAPI.ResolveReferences<Person>(context.Source.Characters).GetAwaiter().GetResult();
+        }
+
+        private IEnumerable<Starship> ResolveStarships(ResolveFieldContext<Film> context)
+        {
+            return SWAPI.ResolveReferences<Starship>(context.Source.Starships).GetAwaiter().GetResult();
         }
     }
 }
