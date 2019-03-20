@@ -10,9 +10,10 @@ namespace StarWarsQLConsole
         static Dictionary<string, string> NamedQueries = new Dictionary<string, string>()
         {
             {"darthVadar", "{ person(id: \"4\") { name gender height skinColor hairColor homeworld films { title } starships { name } } }"},
-            {"allPeople", "{ allPersons { name gender height skinColor hairColor homeworld vehicles } }"},
-            {"aNewHope", "{ film(id: \"1\") { title producer director characters { name } vehicles starships { name } } }"},
-            {"slave1", "{ starship(id: \"21\") { name model starshipClass manufacturer length crew passengers consumables films {title} pilots {name} } }"}
+            {"allPeople", "{ allPersons { name gender height skinColor hairColor homeworld vehicles { name } } }"},
+            {"aNewHope", "{ film(id: \"1\") { title producer director characters { name } vehicles { name } starships { name } } }"},
+            {"slave1", "{ starship(id: \"21\") { name model starshipClass manufacturer length crew passengers consumables films {title} pilots {name} } }"},
+            {"snowspeeder", "{ vehicle(id: \"14\") { name model vehicleClass manufacturer length crew passengers consumables films { title } pilots { name } } }"}
         };
 
         private static string ResolveQuery(string[] args)

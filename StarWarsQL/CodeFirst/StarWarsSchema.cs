@@ -25,42 +25,74 @@ namespace StarWarsQL.CodeFirst
         {
             public StarWarsQuery()
             {
-                Field<PersonType>(
-                    "person",
+                FieldFromID<PersonType, Person>("person", "people");
+                FieldFromID<FilmType, Film>("film", "films");
+                FieldFromID<StarshipType, Starship>("starship", "starships");
+                FieldFromID<VehicleType, Vehicle>("vehicle", "vehicles");
+
+                // Field<PersonType>(
+                //     "person",
+                //     arguments: new QueryArguments(
+                //         new QueryArgument<IdGraphType> { Name = "id" }
+                //     ),
+                //     resolve: context =>
+                //     {
+                //         var id = context.GetArgument<string>("id");
+                //         return SWAPI.GetByID<Person>("people", id);
+                //     }
+                // );
+
+                // Field<FilmType>(
+                //     "film",
+                //     arguments: new QueryArguments(
+                //         new QueryArgument<IdGraphType> { Name = "id" }
+                //     ),
+                //     resolve: context => 
+                //     {
+                //         var id = context.GetArgument<string>("id");
+                //         return SWAPI.GetByID<Film>("films", id);
+                //     }
+                // );
+
+                // Field<StarshipType>(
+                //     "starship",
+                //     arguments: new QueryArguments(
+                //         new QueryArgument<IdGraphType> { Name = "id" }
+                //     ),
+                //     resolve: context => 
+                //     {
+                //         var id = context.GetArgument<string>("id");
+                //         return SWAPI.GetByID<Starship>("starships", id);
+                //     }
+                // );
+
+                // Field<VehicleType>(
+                //     "vehicle",
+                //     arguments: new QueryArguments(
+                //         new QueryArgument<IdGraphType> { Name = "id" }
+                //     ),
+                //     resolve: context => 
+                //     {
+                //         var id = context.GetArgument<string>("id");
+                //         return SWAPI.GetByID<Vehicle>("vehicles", id);
+                //     }
+                // );
+            } 
+
+            private void FieldFromID<ResolveType, ModelType>(string fieldName, string resourcePath) where ResolveType : IGraphType
+            {
+                Field<ResolveType>(
+                    fieldName,
                     arguments: new QueryArguments(
                         new QueryArgument<IdGraphType> { Name = "id" }
                     ),
                     resolve: context =>
                     {
                         var id = context.GetArgument<string>("id");
-                        return SWAPI.GetByID<Person>("people", id);
+                        return SWAPI.GetByID<ModelType>(resourcePath, id);
                     }
                 );
-
-                Field<FilmType>(
-                    "film",
-                    arguments: new QueryArguments(
-                        new QueryArgument<IdGraphType> { Name = "id" }
-                    ),
-                    resolve: context => 
-                    {
-                        var id = context.GetArgument<string>("id");
-                        return SWAPI.GetByID<Film>("films", id);
-                    }
-                );
-
-                Field<StarshipType>(
-                    "starship",
-                    arguments: new QueryArguments(
-                        new QueryArgument<IdGraphType> { Name = "id" }
-                    ),
-                    resolve: context => 
-                    {
-                        var id = context.GetArgument<string>("id");
-                        return SWAPI.GetByID<Starship>("starships", id);
-                    }
-                );
-            } 
+            }
         }
     }  
 }
