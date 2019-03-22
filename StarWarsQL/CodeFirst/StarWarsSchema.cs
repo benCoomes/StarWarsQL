@@ -30,6 +30,7 @@ namespace StarWarsQL.CodeFirst
                 FieldFromID<StarshipType, Starship>("starship", "starships");
                 FieldFromID<VehicleType, Vehicle>("vehicle", "vehicles");
                 FieldFromID<SpeciesType, Species>("species", "species");
+                FieldFromID<PlanetType, Planet>("planet", "planets");
 
                 // Field<PersonType>(
                 //     "person",

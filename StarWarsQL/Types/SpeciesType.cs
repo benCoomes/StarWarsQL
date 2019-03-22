@@ -18,7 +18,7 @@ namespace StarWarsQL.Types
             Field<StringGraphType>("designation", resolve: context => context.Source.Designation);
             Field<StringGraphType>("averageHeight", resolve: context => context.Source.AverageHeight);
             Field<StringGraphType>("averageLifespan", resolve: context => context.Source.AverageLifespan);
-            Field<StringGraphType>("homeworld", resolve: context => context.Source.Homeworld);
+            Field<PlanetType>("homeworld", resolve: ResolveHomeworld);
             Field<ListGraphType<PersonType>>("people", resolve: ResolvePeople);
             Field<ListGraphType<FilmType>>("films", resolve: ResolveFilms);
         }
@@ -33,10 +33,9 @@ namespace StarWarsQL.Types
             return SWAPI.ResolveReferences<Person>(context.Source.People).GetAwaiter().GetResult();
         }
 
-        // private Planet ResolveHomeworld(ResolveFieldContext<Species> context) 
-        // {
-        //     return SWAPI.ResolveReference<Planet>(context.Source.Homeworld).GetAwaiter().GetResult();
-        // }
-
+        private Planet ResolveHomeworld(ResolveFieldContext<Species> context) 
+        {
+            return SWAPI.ResolveReference<Planet>(context.Source.Homeworld).GetAwaiter().GetResult();
+        }
     }
 }

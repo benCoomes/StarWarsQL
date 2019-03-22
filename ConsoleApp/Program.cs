@@ -11,10 +11,12 @@ namespace StarWarsQLConsole
         {
             {"darthVadar", "{ person(id: \"4\") { name gender height skinColor hairColor homeworld films { title } starships { name } species { name } } }"},
             {"allPeople", "{ allPersons { name gender height skinColor hairColor homeworld vehicles { name } } }"},
-            {"aNewHope", "{ film(id: \"1\") { title producer director characters { name } vehicles { name } starships { name } } }"},
+            {"aNewHope", "{ film(id: \"1\") { title producer director characters { name } vehicles { name } starships { name } planets { name } } }"},
             {"slave1", "{ starship(id: \"21\") { name model starshipClass manufacturer length crew passengers consumables films {title} pilots {name} } }"},
             {"snowspeeder", "{ vehicle(id: \"14\") { name model vehicleClass manufacturer length crew passengers consumables films { title } pilots { name } } }"},
-            {"hutt", "{ species(id: \"5\") { name classification averageHeight skinColors homeworld people { name } films { title } } }"}
+            {"hutt", "{ species(id: \"5\") { name classification averageHeight skinColors homeworld people { name } films { title } } }"},
+            {"endor", "{planet(id: \"7\") { name diameter climate terrain residents { name } films { title } } }"},
+            {"killTheAPI", "{ film(id: \"1\") { title characters { name homeworld { name residents { name } } } } }"}
         };
 
         private static string ResolveQuery(string[] args)
