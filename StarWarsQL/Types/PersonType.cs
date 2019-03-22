@@ -19,7 +19,7 @@ namespace StarWarsQL.Types
             Field<StringGraphType>("skinColor", resolve: context => context.Source.SkinColor);        
             Field<StringGraphType>("homeworld", resolve: context => context.Source.Homeworld);        
             Field<ListGraphType<FilmType>>("films", resolve: ResolveFilms);
-            Field<ListGraphType<StringGraphType>>("species", resolve: context => context.Source.Species);
+            Field<ListGraphType<SpeciesType>>("species", resolve: ResolveSpecies);
             Field<ListGraphType<StarshipType>>("starships", resolve: ResolveStarships);
             Field<ListGraphType<VehicleType>>("vehicles", resolve: ResolveVehicles);
         }
@@ -37,6 +37,11 @@ namespace StarWarsQL.Types
         private IEnumerable<Vehicle> ResolveVehicles(ResolveFieldContext<Person> context)
         {
             return SWAPI.ResolveReferences<Vehicle>(context.Source.Vehicles).GetAwaiter().GetResult();
+        }
+
+        private IEnumerable<Species> ResolveSpecies(ResolveFieldContext<Person> context)
+        {
+            return SWAPI.ResolveReferences<Species>(context.Source.Species).GetAwaiter().GetResult();
         }
     }
 }
