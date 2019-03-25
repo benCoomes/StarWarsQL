@@ -31,6 +31,13 @@ namespace StarWarsQL.CodeFirst
                 FieldFromID<VehicleType, Vehicle>("vehicle", "vehicles");
                 FieldFromID<SpeciesType, Species>("species", "species");
                 FieldFromID<PlanetType, Planet>("planet", "planets");
+
+                AllField<PersonType, Person>("allPeople", "people");
+                AllField<FilmType, Film>("allFilms", "films");
+                AllField<StarshipType, Starship>("allStarships", "starships");
+                AllField<VehicleType, Vehicle>("allVehicles", "vehicles");
+                AllField<SpeciesType, Species>("allSpecies", "species");
+                AllField<PlanetType, Planet>("allPlanets", "planets");
             } 
 
             private void FieldFromID<ResolveType, ModelType>(string fieldName, string resourcePath) where ResolveType : IGraphType
@@ -45,6 +52,14 @@ namespace StarWarsQL.CodeFirst
                         var id = context.GetArgument<string>("id");
                         return SWAPI.GetByID<ModelType>(resourcePath, id);
                     }
+                );
+            }
+
+            private void AllField<ResolveType, ModelType>(string fieldName, string resourcePath) where ResolveType : IGraphType
+            {
+                Field<ListGraphType<ResolveType>>(
+                    fieldName,
+                    resolve: context => SWAPI.GetAll<ModelType>(resourcePath)
                 );
             }
         }

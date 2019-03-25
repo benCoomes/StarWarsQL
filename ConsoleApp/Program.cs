@@ -16,6 +16,7 @@ namespace StarWarsQLConsole
             {"snowspeeder", "{ vehicle(id: \"14\") { name model vehicleClass manufacturer length crew passengers consumables films { title } pilots { name } } }"},
             {"hutt", "{ species(id: \"5\") { name classification averageHeight skinColors homeworld people { name } films { title } } }"},
             {"endor", "{planet(id: \"7\") { name diameter climate terrain residents { name } films { title } } }"},
+            {"allPlanets", "{allPlanets { name diameter climate terrain } }"},
             {"killTheAPI", "{ film(id: \"1\") { title characters { name homeworld { name residents { name } } } } }"}
         };
 

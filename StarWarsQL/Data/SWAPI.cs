@@ -21,6 +21,33 @@ namespace StarWarsQL.Data
             }
         }
 
+        public static async Task<IEnumerable<T>> GetAll<T>(string resourceName)
+        {
+            var results = new List<T>();
+            var next = $"/api/{resourceName}";
+
+            do
+            {
+                using(var response = await client.GetAsync(next))
+                {
+                    response.EnsureSuccessStatusCode();
+
+                    var json = await response.Content.ReadAsStringAsync();
+                    var jobject = JsonConvert.DeserializeAnonymousType(json, new 
+                    {
+                        Results = new List<T>(),
+                        Next = ""
+                    });
+                    
+                    results.AddRange(jobject.Results);
+                    next = jobject.Next;
+                }
+
+            } while( !String.IsNullOrWhiteSpace(next) );
+
+            return results;
+        }
+
         public static async Task<T> ResolveReference<T>(string url)
         {
             using(var response = await client.GetAsync(url))
@@ -45,7 +72,6 @@ namespace StarWarsQL.Data
             {
                 results.Add(await ResolveReference<T>(url));
             }
-
 
             return results;
         }
