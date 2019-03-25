@@ -31,54 +31,6 @@ namespace StarWarsQL.CodeFirst
                 FieldFromID<VehicleType, Vehicle>("vehicle", "vehicles");
                 FieldFromID<SpeciesType, Species>("species", "species");
                 FieldFromID<PlanetType, Planet>("planet", "planets");
-
-                // Field<PersonType>(
-                //     "person",
-                //     arguments: new QueryArguments(
-                //         new QueryArgument<IdGraphType> { Name = "id" }
-                //     ),
-                //     resolve: context =>
-                //     {
-                //         var id = context.GetArgument<string>("id");
-                //         return SWAPI.GetByID<Person>("people", id);
-                //     }
-                // );
-
-                // Field<FilmType>(
-                //     "film",
-                //     arguments: new QueryArguments(
-                //         new QueryArgument<IdGraphType> { Name = "id" }
-                //     ),
-                //     resolve: context => 
-                //     {
-                //         var id = context.GetArgument<string>("id");
-                //         return SWAPI.GetByID<Film>("films", id);
-                //     }
-                // );
-
-                // Field<StarshipType>(
-                //     "starship",
-                //     arguments: new QueryArguments(
-                //         new QueryArgument<IdGraphType> { Name = "id" }
-                //     ),
-                //     resolve: context => 
-                //     {
-                //         var id = context.GetArgument<string>("id");
-                //         return SWAPI.GetByID<Starship>("starships", id);
-                //     }
-                // );
-
-                // Field<VehicleType>(
-                //     "vehicle",
-                //     arguments: new QueryArguments(
-                //         new QueryArgument<IdGraphType> { Name = "id" }
-                //     ),
-                //     resolve: context => 
-                //     {
-                //         var id = context.GetArgument<string>("id");
-                //         return SWAPI.GetByID<Vehicle>("vehicles", id);
-                //     }
-                // );
             } 
 
             private void FieldFromID<ResolveType, ModelType>(string fieldName, string resourcePath) where ResolveType : IGraphType
