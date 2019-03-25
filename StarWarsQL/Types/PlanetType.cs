@@ -18,6 +18,7 @@ namespace StarWarsQL.Types
             Field<StringGraphType>("surfaceWater", resolve: context => context.Source.SurfaceWater);
             Field<StringGraphType>("gravity", resolve: context => context.Source.Gravity);
             Field<StringGraphType>("terrain", resolve: context => context.Source.Terrain);
+            Field<StringGraphType>("url", resolve: context => context.Source.Url);
             Field<ListGraphType<FilmType>>("films", resolve: ResolveFilms);
             Field<ListGraphType<PersonType>>("residents", resolve: ResolveResidents);
         }

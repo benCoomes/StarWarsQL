@@ -37,5 +37,8 @@ namespace StarWarsQL.Models
     
         [JsonProperty("residents")]
         public IEnumerable<string> Residents { get; set; }
-	}
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
 }

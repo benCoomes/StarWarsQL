@@ -20,6 +20,7 @@ namespace StarWarsQL.Types
             Field<StringGraphType>("maxAtmospheringSpeed", resolve: context => context.Source.MaxAtmospheringSpeed);
             Field<StringGraphType>("cargoCapacity", resolve: context => context.Source.CargoCapacity);
             Field<StringGraphType>("consumables", resolve: context => context.Source.Consumables);
+            Field<StringGraphType>("url", resolve: context => context.Source.Url);
             Field<ListGraphType<FilmType>>("films", resolve: ResolveFilms);
             Field<ListGraphType<PersonType>>("pilots", resolve: ResolvePilots);
         }

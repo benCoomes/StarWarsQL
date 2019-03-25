@@ -50,6 +50,8 @@ namespace StarWarsQL.Models
         [JsonProperty("pilots")]
         public IEnumerable<string> Pilots { get; set; }
 
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 
 }

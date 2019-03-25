@@ -43,5 +43,8 @@ namespace StarWarsQL.Models
 	
 		[JsonProperty("vehicles")]
 		public IEnumerable<string> Vehicles { get; set; }
+
+		[JsonProperty("url")]
+        public string Url { get; set; }
 	}
 }

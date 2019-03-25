@@ -16,7 +16,8 @@ namespace StarWarsQL.Types
             Field<StringGraphType>("hairColor", resolve: context => context.Source.HairColor);        
             Field<StringGraphType>("height", resolve: context => context.Source.Height);        
             Field<StringGraphType>("mass", resolve: context => context.Source.Mass);        
-            Field<StringGraphType>("skinColor", resolve: context => context.Source.SkinColor);        
+            Field<StringGraphType>("skinColor", resolve: context => context.Source.SkinColor);
+            Field<StringGraphType>("url", resolve: context => context.Source.Url);
             Field<PlanetType>("homeworld", resolve: ResolveHomeworld);        
             Field<ListGraphType<FilmType>>("films", resolve: ResolveFilms);
             Field<ListGraphType<SpeciesType>>("species", resolve: ResolveSpecies);
